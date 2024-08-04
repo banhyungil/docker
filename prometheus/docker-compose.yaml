@@ -1,0 +1,29 @@
+networks:
+  dms_default:
+    name: dms_default
+    driver: bridge
+services:
+  prometheus:
+      command:
+        - --config.file=/etc/prometheus/prometheus.yml
+        - --storage.tsdb.path=/prometheus
+        - --web.console.libraries=/etc/prometheus/console_libraries
+        - --web.console.templates=/etc/prometheus/consoles
+        - --storage.tsdb.retention.time=30d
+        - --web.enable-lifecycle
+      container_name: prometheus
+      entrypoint:
+        - /bin/prometheus
+      environment:
+        - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+        - TZ=Asia/Seoul
+      image: mypro
+      ipc: private
+      user: root
+      ports:
+        - 9090:9090    
+      # https://docs.docker.com/storage/volumes/#use-a-read-only-volume 
+      working_dir: /prometheus
+      restart: always
+      networks:
+        - dms_default

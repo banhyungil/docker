@@ -1,0 +1,8 @@
+services:
+  cpcont:
+    container_name: cpcont
+    image: cpcont
+    volumes:
+      - /data/prometheus/etc/prometheus:/data/prometheus/etc/prometheus:rw
+      - /data/grafana/etc/grafana/provisioning:/data/grafana/etc/grafana/provisioning:rw
+      - /data/grafana/var/lib/grafana:/data/grafana/var/lib/grafana:rw

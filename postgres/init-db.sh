@@ -1,0 +1,1 @@
+CREATE SCHEMA dms AUTHORIZATION postgres;

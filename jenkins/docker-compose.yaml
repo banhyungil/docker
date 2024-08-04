@@ -1,0 +1,21 @@
+version: '3.6'
+
+networks:
+  dms_default:
+    name: dms_default
+services:
+  jenkins:
+    image: realhubvms/jenkins-docker
+    container_name: jenkins
+    restart: always
+    volumes:
+      - v-jenkins:/var/jenkins_home
+      # host docker socket 사용
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8888:8080"
+    networks:
+      - dms_default
+volumes:
+  v-jenkins:
+    name: v-jenkins

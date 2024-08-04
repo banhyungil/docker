@@ -1,0 +1,3 @@
+#FROM nginx:1.21.6
+FROM nginx
+ENV API_URL 10.3.192.242:8010

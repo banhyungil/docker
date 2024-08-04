@@ -1,0 +1,32 @@
+networks:
+  dms_default:
+    name: dms_default
+    driver: bridge
+services:
+  grafana:
+    container_name: grafana
+    entrypoint:
+      - /run.sh
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=nice2122!
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - PATH=/usr/share/grafana/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - GF_PATHS_CONFIG=/etc/grafana/grafana.ini
+      - GF_PATHS_DATA=/var/lib/grafana
+      - GF_PATHS_HOME=/usr/share/grafana
+      - GF_PATHS_LOGS=/var/log/grafana
+      - GF_PATHS_PLUGINS=/var/lib/grafana/plugins
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - TZ=Asia/Seoul
+    image: mygra
+    ports:
+      - 3001:3000    
+    ipc: private
+    user: root
+    working_dir: /usr/share/grafana
+    restart: always 
+    networks:
+      - dms_default

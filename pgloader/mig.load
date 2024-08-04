@@ -1,0 +1,12 @@
+LOAD database
+     FROM mysql://root:nice2122!@10.3.192.242:3306/SCS
+     INTO postgresql://postgres:nice2122!@10.3.92.91:5432/postgres 
+
+ WITH quote identifiers, include drop, create tables, no truncate,
+      create indexes, reset sequences, foreign keys
+
+  SET maintenance_work_mem to '128MB', work_mem to '12MB', search_path to 'sakila'
+
+ CAST type longtext to jsonb
+
+ ALTER SCHEMA 'SCS' RENAME TO 'DMS';

@@ -1,0 +1,14 @@
+server {
+  listen ${PORT};
+  client_max_body_size 5M;
+
+  location /front {
+    proxy_pass ${API_URL};
+  }
+  location /data {
+  }    
+
+  location / {
+    proxy_pass $scheme://$host$request_uri;
+  } 
+}

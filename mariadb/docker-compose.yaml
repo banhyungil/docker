@@ -1,0 +1,15 @@
+name: mariadb
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD_HASH=*913DE0B147A4B30E1F3CEDE1E84A6BD0BD421BD0
+      - MARIADB_DATABASE=MYDB
+    volumes:
+      - v-mariadb:/var/lib/mysql
+    ports:
+      - 3306:3306
+volumes:
+  v-mariadb:
